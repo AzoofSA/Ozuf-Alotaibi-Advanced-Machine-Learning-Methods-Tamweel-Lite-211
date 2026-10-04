@@ -1,0 +1,39 @@
+name: Apply Bilingual Bundle
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: apply-bilingual-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: bilingual-side-by-side-v2
+          fetch-depth: 0
+      - name: Apply reviewed bilingual release
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          parts=(.github/bilingual-parts/*.b64)
+          if [ ${#parts[@]} -eq 0 ]; then
+            echo 'No staged bundle parts remain; nothing to apply.'
+            exit 0
+          fi
+          cat "${parts[@]}" | base64 --decode > /tmp/bilingual-v1.1.0.tar.gz
+          echo 'dde74727abe12ade07907b96e74b714786bbbea4341760ad33985d451dd5f25f  /tmp/bilingual-v1.1.0.tar.gz' | sha256sum --check --strict
+          tar -xzf /tmp/bilingual-v1.1.0.tar.gz -C .
+          rm -rf .github/bilingual-parts
+          git config user.name 'Meaad course release bot'
+          git config user.email 'almiyead@gmail.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Bundle already applied.'
+            exit 0
+          fi
+          git commit -m 'Build complete side-by-side bilingual learner experience v1.1.0'
+          git push origin HEAD:bilingual-side-by-side-v2
