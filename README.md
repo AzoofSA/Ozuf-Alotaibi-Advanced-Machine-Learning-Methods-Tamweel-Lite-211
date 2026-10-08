@@ -15,13 +15,10 @@ An end-to-end machine-learning capstone for predicting synthetic 90-day default,
 | Final decision / القرار النهائي | KEEP SINGLE / الإبقاء على نموذج واحد |
 | Execution / التشغيل | Google Colab CPU, FAST mode, seed 211 / معالج CPU على Colab، الوضع السريع، البذرة 211 |
 
-[View the executed notebook / عرض دفتر المشروع المنفذ](./Copy_of_Tamweel_%20%281%29.ipynb)
+[View the executed notebook / عرض دفتر المشروع المنفذ](./notebooks/Copy_of_Tamweel_%20%281%29.ipynb)
+The executed notebook is located in the notebooks folder.
 
-Upload this README and `Copy_of_Tamweel_ (1).ipynb` to the same repository folder so the link works. If the notebook is renamed, update the link.
-
-ارفع هذا الملف ودفتر `Copy_of_Tamweel_ (1).ipynb` في المجلد نفسه داخل المستودع ليعمل الرابط. إذا تغير اسم الدفتر، حدّث الرابط.
-
-## Project overview / نظرة عامة على المشروع
+دفتر المشروع المنفذ موجود داخل مجلد notebooks.نظرة عامة على المشروع
 Tamweel studies whether information available at application time can predict `default_within_90d` and support simulated review prioritization. A review flag is an educational priority indicator, not automatic rejection.
 
 يدرس المشروع إمكانية استخدام المعلومات المتاحة وقت تقديم طلب التمويل لتوقع `default_within_90d` وترتيب أولوية المراجعة بصورة تعليمية. إشارة المراجعة تعني رفع الأولوية، ولا تعني رفض الطلب تلقائيًا.
